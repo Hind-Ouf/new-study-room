@@ -1,0 +1,23 @@
+@model IEnumerable<Room>
+@{ ViewData["Title"] = "Rooms"; }
+<header class="page-heading d-flex flex-wrap justify-content-between align-items-end gap-3">
+    <div><span class="eyebrow"> Space directory</span><h1 class="page-title">Study rooms</h1><p class="page-subtitle">Explore and manage the rooms available for booking.</p></div>
+    <a class="btn btn-primary mb-1" asp-action="Create">Add room</a>
+</header>
+<div class="content-card"><div class="table-responsive">
+<table class="table table-hover align-middle mb-0">
+    <thead class="table-light"><tr><th>Name</th><th>Floor</th><th>Capacity</th><th>Projector</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td class="primary-cell">@r.Name</td><td>@r.Floor</td><td>@r.Capacity</td>
+            <td>@(r.HasProjector ? "Yes" : "No")</td>
+            <td><div class="table-actions">
+                <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@r.Id">Edit</a>
+                <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@r.Id">Delete</a>
+            </div></td>
+        </tr>
+    }
+    </tbody>
+</table></div></div>

@@ -1,0 +1,43 @@
+@model BookingFormViewModel
+<form method="post" class="booking-form">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+    <div class="mb-4"><label asp-for="RoomId" class="form-label"></label>
+        <select asp-for="RoomId" asp-items="ViewBag.Rooms" class="form-select" id="roomSelect">
+            <option value="0">-- Select a room --</option>
+        </select>
+        <div id="roomInfo" class="form-text"></div>
+        <span asp-validation-for="RoomId" class="text-danger"></span></div>
+
+    <div class="form-section-label">When would you like the room?</div>
+    <div class="row">
+        <div class="col-md-6 mb-3"><label asp-for="StartTime" class="form-label"></label>
+            <input asp-for="StartTime" class="form-control" /><span asp-validation-for="StartTime" class="text-danger"></span></div>
+        <div class="col-md-6 mb-3"><label asp-for="EndTime" class="form-label"></label>
+            <input asp-for="EndTime" class="form-control" /><span asp-validation-for="EndTime" class="text-danger"></span></div>
+    </div>
+    <hr class="form-divider" />
+    <div class="form-section-label">Booking details</div>
+    <div class="mb-3">
+        <label asp-for="CourseIds" class="form-label"></label>
+        <select asp-for="CourseIds" asp-items="ViewBag.Courses" class="form-select" multiple size="3" aria-describedby="courseHelp"></select>
+        <div id="courseHelp" class="form-text">Choose one or more courses. Hold Command (Mac) or Ctrl (Windows) to select multiple.</div>
+    </div>
+    <input type="hidden" asp-for="CreatorStudentId" />
+    <div class="mb-3"><label class="form-label">Student number</label>
+        <input value="@Model.CreatorStudentId" class="form-control" readonly aria-readonly="true" />
+        <div class="form-text">Your registered student number is added to the booking.</div></div>
+    <div class="mb-3"><label asp-for="Subject" class="form-label"></label>
+        <input asp-for="Subject" class="form-control" /><span asp-validation-for="Subject" class="text-danger"></span></div>
+    <div class="mb-3"><label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="3"></textarea><span asp-validation-for="Description" class="text-danger"></span></div>
+
+    <div class="form-actions">
+        <button class="btn btn-primary">Save booking</button>
+        <a class="btn btn-link" asp-action="Index">Cancel</a>
+    </div>
+</form>
+
+<script src="~/js/booking-form.js"></script>
+<partial name="_ValidationScriptsPartial" />

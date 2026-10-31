@@ -1,0 +1,22 @@
+@model IEnumerable<Course>
+@{ ViewData["Title"] = "Courses"; }
+<header class="page-heading d-flex flex-wrap justify-content-between align-items-end gap-3">
+    <div><span class="eyebrow"> Study subjects</span><h1 class="page-title">Courses</h1><p class="page-subtitle">Connect sessions to courses so classmates can find a group to study with.</p></div>
+    <a class="btn btn-primary mb-1" asp-action="Create">Add course</a>
+</header>
+@if (!Model.Any())
+{
+    <div class="empty-state"><h3>No courses yet</h3><p class="mb-0">Add a course to make study sessions easier to discover.</p></div>
+}
+else
+{
+    <div class="content-card"><div class="table-responsive"><table class="table table-hover align-middle mb-0">
+        <thead><tr><th>Course code</th><th>Course name</th><th></th></tr></thead>
+        <tbody>
+        @foreach (var course in Model)
+        {
+            <tr><td class="primary-cell">@course.Code</td><td>@course.Name</td><td><div class="table-actions"><a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@course.Id">Edit</a><a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@course.Id">Delete</a></div></td></tr>
+        }
+        </tbody>
+    </table></div></div>
+}

@@ -1,0 +1,8 @@
+@model BookingFormViewModel
+@{ ViewData["Title"] = "New booking"; }
+<header class="page-heading">
+    <span class="eyebrow"> Plan a focused session</span>
+    <h1 class="page-title">Book a study room</h1>
+    <p class="page-subtitle">Choose your space and time. We’ll check that the room is available before saving.</p>
+</header>
+<section class="surface-card form-panel"><partial name="_BookingForm" model="Model" /></section>

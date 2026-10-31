@@ -1,0 +1,9 @@
+@model Course
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+    <div class="mb-3"><label asp-for="Code" class="form-label"></label><input asp-for="Code" class="form-control" placeholder="e.g. ITPE3200" /><span asp-validation-for="Code" class="text-danger"></span></div>
+    <div class="mb-4"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control" placeholder="e.g. Web Development" /><span asp-validation-for="Name" class="text-danger"></span></div>
+    <div class="form-actions"><button class="btn btn-primary">Save course</button><a class="btn btn-link" asp-action="Index">Cancel</a></div>
+</form>
+<partial name="_ValidationScriptsPartial" />

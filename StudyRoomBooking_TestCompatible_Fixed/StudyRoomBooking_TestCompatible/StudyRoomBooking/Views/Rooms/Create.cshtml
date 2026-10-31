@@ -1,0 +1,8 @@
+@model Room
+@{ ViewData["Title"] = "Add room"; }
+<header class="page-heading">
+    <span class="eyebrow"> Manage your study spaces</span>
+    <h1 class="page-title">Add a room</h1>
+    <p class="page-subtitle">Add a room to make it available in the booking search.</p>
+</header>
+<section class="surface-card form-panel form-panel-narrow"><partial name="_RoomForm" model="Model" /></section>

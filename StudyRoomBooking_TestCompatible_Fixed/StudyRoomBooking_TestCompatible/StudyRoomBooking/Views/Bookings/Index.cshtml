@@ -1,0 +1,41 @@
+@model BookingSearchViewModel
+@{ ViewData["Title"] = "Study sessions"; }
+<header class="page-heading d-flex flex-wrap justify-content-between align-items-end gap-3">
+    <div><span class="eyebrow"> Learn together</span><h1 class="page-title">Study sessions</h1><p class="page-subtitle">Find a session by course, subject, or time—or start one of your own.</p></div>
+    <a class="btn btn-primary mb-1" asp-action="Create">New session</a>
+</header>
+
+<form method="get" class="search-panel mb-4">
+    <div class="search-heading"><span class="search-icon"></span><div><p class="section-kicker">Narrow your search</p><h2 class="section-title">Filter sessions</h2></div></div>
+    <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-4"><label asp-for="Subject" class="form-label"></label><input asp-for="Subject" class="form-control" placeholder="Search a subject or topic" /></div>
+        <div class="col-12 col-md-3"><label asp-for="CourseId" class="form-label">Course</label><select asp-for="CourseId" class="form-select"><option value="">All courses</option>@foreach (var course in Model.Courses) { <option value="@course.Id">@course.Code — @course.Name</option> }</select></div>
+        <div class="col-6 col-md-2"><label asp-for="From" class="form-label">After</label><input asp-for="From" type="datetime-local" class="form-control" /></div>
+        <div class="col-6 col-md-2"><label asp-for="Until" class="form-label">Before</label><input asp-for="Until" type="datetime-local" class="form-control" /></div>
+        <div class="col-12 col-md-1"><button class="btn btn-primary w-100">Search</button></div>
+    </div>
+</form>
+
+@if (!Model.Results.Any())
+{
+    <div class="empty-state"><h3>No sessions match those filters</h3><p class="mb-0">Try a broader search, or create a session for your study group.</p></div>
+}
+else
+{
+    <div class="results-heading"><div><h2>Upcoming and past sessions</h2><p>@Model.Results.Count session@(Model.Results.Count == 1 ? "" : "s") found</p></div></div>
+    <div class="content-card"><div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+        <thead><tr><th>Room</th><th>Session</th><th>Course</th><th>Student</th><th>Start</th><th>End</th><th></th></tr></thead>
+        <tbody>
+        @foreach (var b in Model.Results)
+        {
+            <tr class="@(b.EndTime < DateTime.Now ? "text-muted" : "")">
+                <td class="primary-cell">@b.Room?.Name</td><td>@b.Subject</td>
+                <td>@if (b.Courses.Any()) { @string.Join(", ", b.Courses.Select(c => c.Code)) } else { <span class="text-muted">Open study</span> }</td>
+                <td>@b.CreatorStudentId</td><td>@b.StartTime.ToString("ddd dd MMM HH:mm")</td><td>@b.EndTime.ToString("HH:mm")</td>
+                <td><div class="table-actions"><a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@b.Id">Edit</a><a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@b.Id">Delete</a></div></td>
+            </tr>
+        }
+        </tbody>
+    </table></div></div>
+}

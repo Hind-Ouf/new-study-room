@@ -1,0 +1,8 @@
+@model Room
+@{ ViewData["Title"] = "Delete room"; }
+<h1 class="h3 mb-3">Delete room</h1>
+<div class="alert alert-danger">Delete room <strong>@Model.Name</strong>? All its bookings will be deleted too.</div>
+<form method="post">
+    <button class="btn btn-danger">Yes, delete</button>
+    <a class="btn btn-link" asp-action="Index">Cancel</a>
+</form>

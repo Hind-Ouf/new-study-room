@@ -1,0 +1,20 @@
+@model Room
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3"><label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" /><span asp-validation-for="Name" class="text-danger"></span></div>
+    <div class="row">
+        <div class="col-6 mb-3"><label asp-for="Floor" class="form-label"></label>
+            <input asp-for="Floor" class="form-control" /><span asp-validation-for="Floor" class="text-danger"></span></div>
+        <div class="col-6 mb-3"><label asp-for="Capacity" class="form-label"></label>
+            <input asp-for="Capacity" class="form-control" /><span asp-validation-for="Capacity" class="text-danger"></span></div>
+    </div>
+    <div class="form-check mb-3"><input asp-for="HasProjector" class="form-check-input" />
+        <label asp-for="HasProjector" class="form-check-label"></label></div>
+    <div class="form-actions">
+        <button class="btn btn-primary">Save room</button>
+        <a class="btn btn-link" asp-action="Index">Cancel</a>
+    </div>
+</form>
+<partial name="_ValidationScriptsPartial" />

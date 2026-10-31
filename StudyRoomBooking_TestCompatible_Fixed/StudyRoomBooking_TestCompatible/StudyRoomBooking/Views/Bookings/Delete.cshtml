@@ -1,0 +1,12 @@
+@model Booking
+@{ ViewData["Title"] = "Delete booking"; }
+<header class="page-heading"><span class="eyebrow"> Please confirm</span><h1 class="page-title">Delete booking</h1></header>
+<section class="confirm-panel">
+    <p class="mb-3">You’re about to remove this reservation:</p>
+    <h2 class="h5 fw-bold">@Model.Subject <span class="text-muted fw-normal">in room @Model.Room?.Name</span></h2>
+    <p class="text-muted mb-4">@Model.StartTime.ToString("ddd dd MMM, HH:mm") – @Model.EndTime.ToString("HH:mm")</p>
+    <form method="post" class="form-actions">
+        <button class="btn btn-danger">Delete booking</button>
+        <a class="btn btn-link" asp-action="Index">Keep booking</a>
+    </form>
+</section>

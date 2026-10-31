@@ -1,0 +1,18 @@
+@model LoginViewModel
+@{ ViewData["Title"] = "Sign in"; }
+<header class="page-heading">
+    <span class="eyebrow"> Welcome back</span>
+    <h1 class="page-title">Sign in</h1>
+    <p class="page-subtitle">Sign in to manage your bookings and study sessions.</p>
+</header>
+<section class="surface-card form-panel form-panel-narrow">
+    <form asp-action="Login" method="post">
+        <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+        <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+        <div class="mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" autocomplete="username" /><span asp-validation-for="Email" class="text-danger"></span></div>
+        <div class="mb-3"><label asp-for="Password" class="form-label"></label><input asp-for="Password" class="form-control" autocomplete="current-password" /><span asp-validation-for="Password" class="text-danger"></span></div>
+        <label asp-for="RememberMe" class="form-check mb-4"><input asp-for="RememberMe" class="form-check-input" /><span class="form-check-label">Remember me</span></label>
+        <div class="form-actions"><button class="btn btn-primary">Sign in</button><a class="btn btn-link" asp-action="Register">Create an account</a></div>
+    </form>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

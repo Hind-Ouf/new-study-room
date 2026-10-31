@@ -1,0 +1,4 @@
+@model Course
+@{ ViewData["Title"] = "Delete course"; }
+<header class="page-heading"><span class="eyebrow"> Please confirm</span><h1 class="page-title">Delete course</h1></header>
+<section class="confirm-panel"><p class="mb-2">Remove this course from the catalog?</p><h2 class="h5 fw-bold">@Model.Code <span class="text-muted fw-normal">@Model.Name</span></h2><p class="text-muted">Study sessions will remain; only their course link is removed.</p><form method="post" class="form-actions"><button class="btn btn-danger">Delete course</button><a class="btn btn-link" asp-action="Index">Keep course</a></form></section>
